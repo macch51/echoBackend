@@ -5,6 +5,10 @@ const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 const authRoutes = require('./app/routes/auth.routes');
 const messageRoutes = require('./app/routes/message.routes');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+
 
 require('dotenv').config({path:'./app/.env'});
 
@@ -22,6 +26,7 @@ app.use(express.json());
 // Use authentication routes
 app.use('/api', authRoutes);
 app.use('/api/messages', messageRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 io.on('connection', (socket) => {
   console.log('New client connected');

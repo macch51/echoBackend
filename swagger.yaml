@@ -1,0 +1,143 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Echo App API
+  description: API documentation for Echo App
+host: 'localhost:3000'
+basePath: '/api'
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /users/register:
+    post:
+      summary: Register a new user
+      description: Creates a new user account
+      parameters:
+        - in: body
+          name: user
+          description: User to register
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: User registered successfully
+          schema:
+            $ref: '#/definitions/User'
+  /users/login:
+    post:
+      summary: User login
+      description: Logs in a user and returns a token
+      parameters:
+        - in: body
+          name: user
+          description: User login credentials
+          required: true
+          schema:
+            $ref: '#/definitions/UserLogin'
+      responses:
+        '200':
+          description: Login successful
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+  /messages/send:
+    post:
+      summary: Send a message
+      description: Sends a new message to another user
+      parameters:
+        - in: body
+          name: message
+          description: Message to send
+          required: true
+          schema:
+            $ref: '#/definitions/Message'
+      responses:
+        '201':
+          description: Message sent successfully
+          schema:
+            $ref: '#/definitions/Message'
+  /messages/get:
+    get:
+      summary: Get messages
+      description: Retrieves messages between two users
+      responses:
+        '200':
+          description: List of messages
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Message'
+  /transactions/create:
+    post:
+      summary: Create a transaction
+      description: Initiates a new transaction
+      parameters:
+        - in: body
+          name: transaction
+          description: Transaction details
+          required: true
+          schema:
+            $ref: '#/definitions/Transaction'
+      responses:
+        '201':
+          description: Transaction created successfully
+          schema:
+            $ref: '#/definitions/Transaction'
+  /transactions/user/{userId}:
+    get:
+      summary: Get user transactions
+      description: Retrieves transactions for a user
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: List of transactions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+definitions:
+  User:
+    type: object
+    properties:
+      username:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+  UserLogin:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+  Message:
+    type: object
+    properties:
+      sender:
+        type: string
+      receiver:
+        type: string
+      content:
+        type: string
+  Transaction:
+    type: object
+    properties:
+      sender:
+        type: string
+      receiver:
+        type: string
+      amount:
+        type: number
