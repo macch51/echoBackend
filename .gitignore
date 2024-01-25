@@ -1,0 +1,6 @@
+//Ignoring the Enviroment File
+.env
+
+#Ignoring Unused Files and Folders
+node_modules
+package-lock.json

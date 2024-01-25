@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend System for Echo Messaging Application",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macch51/echoBackend.git#main"
+  },
+  "author": "Mouhamad Ali Chahine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/macch51/echoBackend/issues"
+  },
+  "homepage": "https://github.com/macch51/echoBackend/tree/main#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.1"
+  }
+}
